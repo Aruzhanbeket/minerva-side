@@ -14,13 +14,46 @@
         </div>
     </header>
 
-    <main class="container">
-        <!-- Students will build their app here -->
-        <section id="app-placeholder">
-            <h2>Ready to start?</h2>
-            <p>Tell Gemini what your first milestone is, or ask: "What should we build first for [App Name]?"</p>
-        </section>
-    </main>
+    <main id="app-container" class="clay-bg">
+    <header class="obsidian-text">
+        <h1 class="bone-text">Minerva Match</h1>
+        <p>A reflective journey to discover your academic future.</p>
+    </header>
+
+    <section id="survey-section" class="bone-bg card-shadow">
+        <form id="matching-survey">
+            <fieldset>
+                <legend class="obsidian-text">What sparks your curiosity?</legend>
+                <label for="background">Tell us about your previous academic projects or subjects you've excelled in:</label>
+                <textarea id="background" name="background" placeholder="e.g., I led a local environmental cleanup and loved the data analysis part..." required></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend class="obsidian-text">Global Problem Solving</legend>
+                <label for="goals">Which of the world's "wicked problems" do you feel most driven to solve?</label>
+                <select id="goals" name="goals">
+                    <option value="sustainability">Climate & Sustainability</option>
+                    <option value="justice">Social Justice & Policy</option>
+                    <option value="tech">Ethical AI & Technology</option>
+                    <option value="health">Global Health Equity</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend class="obsidian-text">Personal Interests</legend>
+                <label for="interests">Outside of class, what are you usually doing or reading about?</label>
+                <input type="text" id="interests" name="interests" placeholder="e.g., Urban photography, behavioral economics blogs...">
+            </fieldset>
+
+            <button type="submit" id="match-btn" class="obsidian-bg bone-text">Find My Match</button>
+        </form>
+    </section>
+
+    <section id="results-section" class="hidden">
+        <h2 class="obsidian-text">Your Minerva Pathway</h2>
+        <div id="recommendations-grid"></div>
+    </section>
+</main>
 
     <footer>
         <div class="container footer-content">
