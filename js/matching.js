@@ -7,7 +7,7 @@
 async function findMinervaMatches(applicantProfile) {
     // Note: In a real production app, you would never expose your API key here.
     // For this prototype, we'll assume the student has an API_KEY variable.
-    const API_KEY = "YOUR_GEMINI_API_KEY_HERE"; 
+    const API_KEY = ""; 
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
     // Construct the curriculum context for the AI
