@@ -5,14 +5,13 @@
  */
 
 async function findMinervaMatches(applicantProfile) {
-    // 1. Check for key
+    // 1. Check for key in session storage
     let sessionKey = sessionStorage.getItem('GEMINI_KEY');
 
     // 2. If no key, ASK NOW and WAIT
-    if (!sessionKey || sessionKey === "") {
+    if (!sessionKey || sessionKey === "" || sessionKey === "null") {
         sessionKey = prompt("Please enter your Gemini API Key to see your matches:");
         
-        // If they click cancel or enter nothing, stop immediately!
         if (!sessionKey) {
             return { error: true, message: "API Key is required to proceed." };
         }
@@ -20,18 +19,16 @@ async function findMinervaMatches(applicantProfile) {
         sessionStorage.setItem('GEMINI_KEY', sessionKey);
     }
 
-    // 3. Now build the URL with the verified key
+    // 3. Build the URL with the verified key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${sessionKey}`;
     
-    // ... rest of your code ...
-
-    // Construct the curriculum context for the AI
+    // 4. Construct the curriculum context for the AI
     const curriculumContext = window.MINERVA_CURRICULUM.colleges.map(c => 
         `- ${c.name}: Focuses on ${c.focus}. Concentrations: ${c.concentrations.join(', ')}.`
     ).join('\n');
 
-    // Build the system-style prompt
-    const prompt = `
+    // 5. Build the system-style prompt
+    const promptText = `
         You are an expert Minerva University Academic Advisor. 
         Your goal is to match a prospective student to the top 2 Colleges that align with their goals.
 
@@ -42,12 +39,7 @@ async function findMinervaMatches(applicantProfile) {
         - Background: ${applicantProfile.academicBackground}
         - Interests: ${applicantProfile.interests}
         - Career Goals: ${applicantProfile.careerGoals}
-        - Wicked Problem they want to solve: ${applicantProfile.globalChallenges}
-
-        Task:
-        1. Identify the TOP 2 Minerva Colleges for this student.
-        2. Provide a 2-sentence "Why it matches" explanation for each, specifically referencing their "Wicked Problem" and interests.
-        3. Strictly only recommend the colleges listed above.
+        - Wicked Problem: ${applicantProfile.globalChallenges}
 
         Format your response as a JSON object:
         {
@@ -63,16 +55,18 @@ async function findMinervaMatches(applicantProfile) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }]
+                contents: [{ parts: [{ text: promptText }] }]
             })
         });
 
         const data = await response.json();
         
-        // Extracting text and parsing JSON from Gemini's response
+        if (data.error) {
+            sessionStorage.removeItem('GEMINI_KEY'); // Clear bad key
+            return { error: true, message: "Invalid API Key. Please click the 'Clear API Key' button and try again." };
+        }
+
         const aiResponseText = data.candidates[0].content.parts[0].text;
-        
-        // Clean up markdown code blocks if present
         const jsonString = aiResponseText.replace(/```json|```/g, '').trim();
         return JSON.parse(jsonString);
 
@@ -80,7 +74,7 @@ async function findMinervaMatches(applicantProfile) {
         console.error("AI Matching Error:", error);
         return { 
             error: true, 
-            message: "We encountered a glitch in the neural network. Please try again." 
+            message: "We encountered a glitch. Please check your key and try again." 
         };
     }
 }
