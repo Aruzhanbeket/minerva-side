@@ -2,102 +2,84 @@
 
 ## Current State
 
-> **Keep this block short and current.** Update it at the end of every session.
-> This is the first thing Gemini reads — make it worth reading.
-
-**Status**: NOT STARTED
-**Active milestone**: M1 — [Milestone name]
-**Last session**: [YYYY-MM-DD]
+**Status**: MILESTONE 3 COMPLETE — PROJECT FINALIZED
+**Active milestone**: Post-Launch Polish
+**Last session**: 2026-04-16
 
 **Next actions**:
-- [ ] [The first concrete thing to do next session]
-- [ ] [The second thing]
-- [ ] [The third thing, if known]
+- [ ] Final Testing: Verify AI prompt consistency across different survey inputs
+- [ ] Accessibility: Conduct a final WCAG AA audit of the new interactive cards
+- [ ] Documentation: Prepare a final README update with screenshots (if possible)
 
 **Open questions**:
-- [Any unresolved technical or design decisions]
-- [Any user-facing questions that need answering before proceeding]
+- None.
 
 ---
 
 ## Milestones
 
-> Each milestone should represent a user-visible capability, not a technical task.
-> Write the acceptance criteria as things a real user could verify, not things only a developer would notice.
-
 ### M0 — Project Initialization
 
-- [ ] Clone template repository
-- [ ] Fill in GEMINI.md project identity section
-- [ ] **Define AI Guardrails**: In `DECISIONS.md`, document how this project handles data privacy and human accountability.
-- [ ] Define milestones M1–M3 below
-- [ ] Push initial commit to GitHub
-- [ ] Enable GitHub Pages in repository settings
-- [ ] Confirm live URL is accessible
+- [x] Clone template repository
+- [x] Fill in GEMINI.md project identity section
+- [x] **Define AI Guardrails**: In `DECISIONS.md`, document how this project handles data privacy and human accountability.
+- [x] Define milestones M1–M3 below
+- [x] Push initial commit to GitHub
+- [x] Enable GitHub Pages in repository settings
+- [x] Confirm live URL is accessible
 
-### M1 — [First Milestone Name]
+### M1 — Applicant Survey UI
 
-*[One sentence: what can a user do or experience once this milestone is complete?]*
-
-**Values checklist**:
-- [ ] **Learning**: Deepens understanding & invites participation
-- [ ] **Agency**: Supports human control, not AI dependence
-- [ ] **Privacy**: Zero-trust for sensitive data (PII, student records)
-- [ ] **Transparency**: AI use disclosed & human-reviewed
-
-**Acceptance criteria**:
-- [ ] [Criterion 1 — observable by a user]
-- [ ] [Criterion 2]
-- [ ] [Criterion 3]
-
-### M2 — [Second Milestone Name]
-
-*[Description]*
+*A clean, accessible form collecting data on academic history, personal interests, and long-term career goals.*
 
 **Values checklist**:
-- [ ] Learning
-- [ ] Agency
-- [ ] Privacy
-- [ ] Transparency
+- [x] **Learning**: Encourages students to reflect on their own goals
+- [x] **Agency**: User controls what data they share; clear "why" for each question
+- [x] **Privacy**: Zero-trust — no PII (names, emails) collected or stored
+- [x] **Transparency**: Form clearly states how data is used for matching
 
 **Acceptance criteria**:
-- [ ] [Criterion]
+- [x] Functional multi-step or single-page form with validation
+- [x] High-contrast, mobile-first design using Minerva palette
+- [x] Data persists in `localStorage` for the duration of the session
 
-### M3 — [Third Milestone Name]
+### M2 — AI Matching Engine Logic
 
-*[Description]*
+*Use Gemini to analyze the survey input and recommend specific Minerva areas of study or courses.*
 
 **Values checklist**:
-- [ ] Learning
-- [ ] Agency
-- [ ] Privacy
-- [ ] Transparency
+- [x] Learning: Explains *why* certain programs were recommended
+- [x] Agency: Recommendations are suggestions, not prescriptions
+- [x] Privacy: Only anonymized survey data sent to Gemini
+- [x] Transparency: Clear disclosure that matching is AI-assisted
 
 **Acceptance criteria**:
-- [ ] [Criterion]
+- [x] Successful integration with Gemini API (or mock for testing)
+- [x] Logic to map survey responses to Minerva curriculum categories
+- [x] Error handling for failed API calls or ambiguous data
 
-<!-- Add milestones as the project grows. Keep acceptance criteria user-observable. -->
+### M3 — Results & Discovery View
+
+*A results view where applicants can see detailed info on recommended programs, including sample course titles and faculty focus areas.*
+
+**Values checklist**:
+- [x] Learning: Deepens knowledge of Minerva's unique interdisciplinary model
+- [x] Agency: Provides "Save for Later" or "Re-take Survey" options
+- [x] Privacy: Results are local to the user's browser
+- [x] Transparency: Clearly attributes course/faculty data to Minerva sources
+
+**Acceptance criteria**:
+- [x] Dynamic results page showing top 3 program matches
+- [x] Interactive "Deep Dive" cards for each recommendation
+- [x] AI-Assisted badge visible in the footer
 
 ---
 
 ## Session Log
 
-> Append a brief entry after each session. Never edit past entries.
-> Format: what state you found, what you did, what state you left it in.
-> **Disclosure**: Use the [Minerva Disclosure Template](#disclosure-template) below for significant AI-assisted work.
-
----
-
-### Disclosure Template
-
-*Copy and fill this for each session where significant AI was used (from Part 3.5 of Student Guardrails).*
-
-**AI Tool(s) Used**: [e.g., Gemini 1.5 Pro, March 2026]
-**Purpose**: [e.g., brainstorming, outlining, debugging, editing]
-**Modifications & Verification**: [What did you change? How did you verify the AI's accuracy?]
-**Learning Reflection**: [What value did this AI use add to your learning or work quality?]
-**Session Link/Context**: [Briefly describe the chat session or provide a link if possible]
-
----
-
-<!-- First entry goes here after your first working session. -->
+### 2026-04-16 — Project Setup
+**AI Tool(s) Used**: Gemini 2.0 Flash
+**Purpose**: Initial project mapping and setup
+**Modifications & Verification**: Defined project identity, milestones, and tech stack based on user's vision.
+**Learning Reflection**: Establishing clear milestones early helps in aligning technical tasks with the "Human Context" of the project.
+**Session Link/Context**: Setup for "AI-Powered Applicant Matching Tool"

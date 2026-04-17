@@ -3,57 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your App Name] — Minerva University</title>
+    <title>AI-Powered Applicant Matching Tool — Minerva University</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>[Your App Name]</h1>
-            <p class="subtitle">[One-sentence purpose]</p>
+            <h1>Applicant Matcher</h1>
+            <p class="subtitle">Find your path at Minerva based on your background and goals.</p>
         </div>
     </header>
 
-    <main id="app-container" class="clay-bg">
-    <header class="obsidian-text">
-        <h1 class="bone-text">Minerva Match</h1>
-        <p>A reflective journey to discover your academic future.</p>
-    </header>
+    <main class="container">
+        <!-- M1: Applicant Survey Section -->
+        <section id="survey-section" class="card">
+            <h2>Your Academic Journey</h2>
+            <form id="survey-form">
+                <div class="form-group">
+                    <label for="academicBackground">What is your primary academic background?</label>
+                    <select id="academicBackground" name="academicBackground" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="natural-sciences">Natural Sciences</option>
+                        <option value="social-sciences">Social Sciences</option>
+                        <option value="arts-humanities">Arts & Humanities</option>
+                        <option value="computational-sciences">Computational Sciences</option>
+                        <option value="business">Business / Entrepreneurship</option>
+                    </select>
+                </div>
 
-    <section id="survey-section" class="bone-bg card-shadow">
-        <form id="matching-survey">
-            <fieldset>
-                <legend class="obsidian-text">What sparks your curiosity?</legend>
-                <label for="background">Tell us about your previous academic projects or subjects you've excelled in:</label>
-                <textarea id="background" name="background" placeholder="e.g., I led a local environmental cleanup and loved the data analysis part..." required></textarea>
-            </fieldset>
+                <div class="form-group">
+                    <label for="interests">What interdisciplinary topics fascinate you most?</label>
+                    <textarea id="interests" name="interests" placeholder="e.g. Ethics in AI, Sustainable Urban Development, Neuroplasticity..." required></textarea>
+                </div>
 
-            <fieldset>
-                <legend class="obsidian-text">Global Problem Solving</legend>
-                <label for="goals">Which of the world's "wicked problems" do you feel most driven to solve?</label>
-                <select id="goals" name="goals">
-                    <option value="sustainability">Climate & Sustainability</option>
-                    <option value="justice">Social Justice & Policy</option>
-                    <option value="tech">Ethical AI & Technology</option>
-                    <option value="health">Global Health Equity</option>
-                </select>
-            </fieldset>
+                <div class="form-group">
+                    <label for="careerGoals">What are your long-term career goals?</label>
+                    <textarea id="careerGoals" name="careerGoals" placeholder="Describe the impact you want to have on the world..." required></textarea>
+                </div>
 
-            <fieldset>
-                <legend class="obsidian-text">Personal Interests</legend>
-                <label for="interests">Outside of class, what are you usually doing or reading about?</label>
-                <input type="text" id="interests" name="interests" placeholder="e.g., Urban photography, behavioral economics blogs...">
-            </fieldset>
+                <div class="form-group">
+                    <label for="globalChallenges">Which global challenge do you want to solve first?</label>
+                    <input type="text" id="globalChallenges" name="globalChallenges" placeholder="e.g. Climate Change, Educational Equity..." required>
+                </div>
 
-            <button type="submit" id="match-btn" class="obsidian-bg bone-text">Find My Match</button>
-        </form>
-    </section>
+                <button type="submit" class="btn-primary">Find My Match</button>
+            </form>
+        </section>
 
-    <section id="results-section" class="hidden">
-        <h2 class="obsidian-text">Your Minerva Pathway</h2>
-        <div id="recommendations-grid"></div>
-    </section>
-</main>
+        <!-- M2/M3: Results Section -->
+        <section id="results-section" class="hidden">
+            <div id="loading-state">
+                <p id="loading-message" class="loading-spinner">Loading your matches...</p>
+            </div>
+            <div id="recommendations-grid">
+                <!-- Discovery Cards will be injected here -->
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container footer-content">
@@ -68,6 +74,9 @@
         </div>
     </footer>
 
+    <script src="js/curriculum.js"></script>
+    <script src="js/matching.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

@@ -43,4 +43,32 @@
 3. **Mandatory Disclosure**: AI use is logged in `SCRATCHPAD.md`.
 **Trade-offs**: Development may be slower due to mandatory human review and documentation overhead, but the resulting system is more ethical, secure, and aligned with institutional values.
 
-<!-- Add new decisions below, incrementing the number. -->
+## Decision 003 — Zero-Trust Survey Data Handling
+
+**Date**: 2026-04-16
+**Decision**: Collect only anonymized academic interests and goals; no PII (names, emails) will be requested or stored.
+**Rationale**: Aligning with the "Zero-Trust" guardrail. By not collecting PII, we eliminate the risk of data breaches or misuse of student identity.
+**Alternatives considered**: Collecting emails for "emailing results" — rejected to maintain privacy and reduce technical complexity of backend/mailing service.
+**Trade-offs**: We cannot re-contact users or save their profile across different devices unless they manually export/import data.
+
+**Guardrails Alignment**:
+- **Privacy & IP**: No PII collected; data stays in `localStorage`.
+- **Disclosure**: UI will explicitly state that no personal data is stored.
+- **Responsibility**: Human developer (Aruzhanbeket) responsible for form design.
+- **Bias & Trust**: Transparency in data collection builds trust with prospective applicants.
+- **Values**: Prioritizes Human Agency and Privacy.
+
+## Decision 004 — Gemini API Integration
+
+**Date**: 2026-04-16
+**Decision**: Use Gemini 1.5 Flash for the matching engine, passing structured curriculum data via the prompt.
+**Rationale**: Gemini 1.5 Flash is fast and cost-effective for simple matching tasks. By providing the curriculum data in the prompt, we ensure "grounding" and prevent the AI from hallucinating non-existent Minerva programs.
+**Alternatives considered**: Hard-coded keyword matching — rejected because it lacks the nuance to connect "Wicked Problems" to interdisciplinary study.
+**Trade-offs**: Requires an API key and an internet connection. If the API is unavailable, the matching fails.
+
+**Guardrails Alignment**:
+- **Privacy & IP**: No PII is sent to the API; only anonymized interests and goals.
+- **Disclosure**: UI includes an "AI-Assisted" badge.
+- **Responsibility**: Human developer responsible for prompt engineering and curriculum accuracy.
+- **Bias & Trust**: Grounding the AI in official curriculum data reduces hallucination risk.
+- **Values**: Aligns with "Clarity over cleverness" by using a simple fetch call.

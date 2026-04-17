@@ -1,21 +1,21 @@
-# [PROJECT NAME] — Project Context
+# AI-Powered Applicant Matching Tool — Project Context
 
 ## Project Identity
 
-**Name**: [Your App Name]
-**Purpose**: [One sentence — what does this app do, and why does it matter to the people who use it?]
-**Audience**: [Who uses this? What do they already know, and what are they trying to do?]
-**Human context**: [What changes in how people think, learn, or act because this app exists?]
+**Name**: AI-Powered Applicant Matching Tool
+**Purpose**: Matches prospective students to Minerva programs/courses based on a survey of their academic background and interests to simplify the pre-application phase.
+**Audience**: Prospective Minerva students looking for academic fit.
+**Human context**: Transforms the pre-application phase into a personalized, reflective journey. It helps students see a direct bridge between their unique personal goals and Minerva’s specific interdisciplinary colleges, shifting their mindset from "What does Minerva offer?" to "How will Minerva help me solve the specific global problems I care about?"
 
-**GitHub repo**: [username/repo-name]
-**Live URL**: [https://username.github.io/repo-name]
+**GitHub repo**: https://github.com/Aruzhanbeket/ai-applicant-matching-tool
+**Live URL**: https://Aruzhanbeket.github.io/ai-applicant-matching-tool
 
 ## Tech Stack
 
 - **Frontend**: Vanilla HTML, CSS, JavaScript — no framework, no build step
 - **Hosting**: GitHub Pages (static only — no server-side code, no databases)
-- **Data / Auth**: [e.g., localStorage only | external API — name it | none]
-- **Cost**: $0
+- **Data / Auth**: None (localStorage for session state only)
+- **Cost**: $0 (using Gemini API free tier/trial)
 
 
 ## Key Files and Directories
