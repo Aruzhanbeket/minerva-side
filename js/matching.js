@@ -5,19 +5,22 @@
  */
 
 async function findMinervaMatches(applicantProfile) {
-    // 1. Check if we already have a key in this session
+    // 1. Check for key
     let sessionKey = sessionStorage.getItem('GEMINI_KEY');
 
-    // 2. If not, ask the user for it
-    if (!sessionKey) {
+    // 2. If no key, ASK NOW and WAIT
+    if (!sessionKey || sessionKey === "") {
         sessionKey = prompt("Please enter your Gemini API Key to see your matches:");
-        if (sessionKey) {
-            sessionStorage.setItem('GEMINI_KEY', sessionKey);
-        } else {
-            return { error: true, message: "API Key is required to run the matching engine." };
+        
+        // If they click cancel or enter nothing, stop immediately!
+        if (!sessionKey) {
+            return { error: true, message: "API Key is required to proceed." };
         }
+        
+        sessionStorage.setItem('GEMINI_KEY', sessionKey);
     }
 
+    // 3. Now build the URL with the verified key
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${sessionKey}`;
     
     // ... rest of your code ...
