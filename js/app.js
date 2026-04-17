@@ -1,44 +1,54 @@
 /**
- * app.js — [App Name]
- *
- * Entry point for all application logic.
- * Keep this file organized by feature area as the app grows.
- * See SCRATCHPAD.md for current milestone and DECISIONS.md for
- * architectural choices made so far.
+ * Applicant Matching Tool - App Logic
+ * Adheres to Zero-Trust Privacy: No PII collected.
  */
 
-// ============================================================
-// State
-// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const surveyForm = document.getElementById('survey-form');
+    const surveySection = document.getElementById('survey-section');
+    const resultsSection = document.getElementById('results-section');
+    const loadingMessage = document.getElementById('loading-message');
 
-const state = {
-  // Add your application state here
-};
+    if (surveyForm) {
+        surveyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-// ============================================================
-// Initialization
-// ============================================================
+            // Capture data into applicantProfile object
+            const formData = new FormData(surveyForm);
+            const applicantProfile = {
+                academicBackground: formData.get('academicBackground'),
+                interests: formData.get('interests'),
+                careerGoals: formData.get('careerGoals'),
+                globalChallenges: formData.get('globalChallenges'),
+                timestamp: new Date().toISOString()
+            };
 
-function init() {
-  // Runs once on page load.
-  // Set up event listeners, load initial data, render first view.
-  console.log('[App] initialized');
-}
+            // Save to localStorage (Zero-Trust/Privacy check)
+            // We only save the anonymized survey data for matching logic.
+            localStorage.setItem('applicantProfile', JSON.stringify(applicantProfile));
 
-// ============================================================
-// Event handlers — add yours below
-// ============================================================
+            // UI Feedback: Show loading state
+            surveySection.classList.add('hidden');
+            window.UI.showLoading();
 
-// ============================================================
-// Rendering — add render functions below
-// ============================================================
+            // Transition to M2: Matching Engine
+            handleMatching(applicantProfile);
+        });
+    }
 
-// ============================================================
-// Utilities — add shared helpers below
-// ============================================================
+    /**
+     * Orchestrates the AI matching process
+     */
+    async function handleMatching(profile) {
+        const results = await window.findMinervaMatches(profile);
+        
+        if (results.error) {
+            const grid = document.getElementById('recommendations-grid');
+            grid.innerHTML = `<p class="error">${results.message}</p>`;
+            return;
+        }
 
-// ============================================================
-// Boot
-// ============================================================
-
-document.addEventListener('DOMContentLoaded', init);
+        // Use the new UI Discovery Cards
+        window.UI.displayResults(results.matches);
+    }
+});
