@@ -5,9 +5,17 @@
  */
 
 async function findMinervaMatches(applicantProfile) {
-    // Note: In a real production app, you would never expose your API key here.
-    // For this prototype, we'll assume the student has an API_KEY variable.
-    const API_KEY = ""; 
+    // Zero-Trust Check: Request key only when needed and store only for the session
+    let API_KEY = sessionStorage.getItem('GEMINI_KEY');
+
+    if (!API_KEY) {
+        API_KEY = prompt("Please enter your Gemini API Key to run the match. (Your key is stored only in this session's memory and is never saved to a server).");
+        if (!API_KEY) {
+            return { error: true, message: "API Key is required to run the matching engine." };
+        }
+        sessionStorage.setItem('GEMINI_KEY', API_KEY);
+    }
+
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
     // Construct the curriculum context for the AI

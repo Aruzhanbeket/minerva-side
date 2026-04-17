@@ -51,4 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Use the new UI Discovery Cards
         window.UI.displayResults(results.matches);
     }
+
+    // Handle "Clear API Key" button
+    const clearKeyBtn = document.getElementById('clear-key-btn');
+    if (clearKeyBtn) {
+        clearKeyBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('GEMINI_KEY');
+            alert('API Key cleared from session.');
+            location.reload();
+        });
+    }
 });
